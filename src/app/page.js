@@ -1,95 +1,70 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-
+import { useState } from "react";
 export default function Home() {
+  const [todo, setTodo] = useState([]);
+  const [newtodo, setNewtodo] = useState("");
+  const [activeFilter, setActiveFilter] = useState("all");
+  const addHandler = () => {
+    setTodo([...todo, newtodo]);
+  };
+  const deleteHandler = (index) => {
+    alert("are you shure delete");
+    const trash = todo.filter((todoo, idx) => idx != index);
+    setTodo(trash);
+  };
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div>
+      <div>
+        <h2>todolist</h2>
+        <div className={styles.flex}>
+          <input
+            type="text"
+            placeholder="text"
+            onChange={(e) => setNewtodo(e.target.value)}
+          />
+          <button onClick={addHandler}>add</button>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className={styles.flex}>
+          <button
+            className={activeFilter == "all" && styles.activeStyle}
+            onClick={() => setActiveFilter("all")}
+          >
+            all
+          </button>
+          <button
+            className={activeFilter == "active" && styles.activeStyle}
+            onClick={() => setActiveFilter("active")}
+          >
+            active
+          </button>
+          <button
+            className={activeFilter == "complate" && styles.activeStyle}
+            onClick={() => setActiveFilter("complate")}
+          >
+            complate
+          </button>
+        </div>
+        <div>
+          <h2>No tasks yet. Add one above!</h2>
+        </div>
+
+        {todo.map((todos, index) => {
+          return (
+            <div>
+              <div className={styles.checkbox}>
+                <input type="checkbox" />
+              </div>
+              <p>{todos}</p>
+              <div>
+                <button onClick={() => deleteHandler(index)}>delete</button>
+              </div>
+            </div>
+          );
+        })}
+        <div>Powered by Pinecone academy</div>
+      </div>
     </div>
   );
 }
