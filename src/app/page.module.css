@@ -4,6 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 800px;
+  background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20231001/pngtree-completed-to-do-list-icon-a-3d-rendering-of-a-notebook-image_13576111.png");
+  background-size: cover; /* Зураг дэлгэцийг бүрэн хамрах /
+  background-position: center; / Зураг төвд байрлах /
+  background-repeat: no-repeat; / Зураг давтагдахгүй */
 }
 .parentDev {
   display: flex;
