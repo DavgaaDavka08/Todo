@@ -16,7 +16,9 @@ export default function Home() {
   };
 
   const deleteHandler = (index) => {
-    const userConfirmed = confirm("Are you sure you want to delete this task?");
+    const userConfirmed = confirm(
+      "Are you sure you want to delete this is task?"
+    );
     if (!userConfirmed) return;
     const updatedTodos = todos.filter((_, i) => i !== index);
     setTodos(updatedTodos);
