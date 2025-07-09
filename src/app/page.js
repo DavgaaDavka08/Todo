@@ -73,7 +73,7 @@ export default function Home() {
           </button>
         </div>
 
-        <div>
+        <div className="">
           {filteredTodos.length === 0 ? (
             <p className={styles.titlep}>No tasks yet. Add one above!</p>
           ) : (
